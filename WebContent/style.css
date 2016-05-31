@@ -1,0 +1,46 @@
+#cookieDiv {
+	display: none;
+	padding-top: 2em;
+	padding-bottom: 2em;
+}
+
+.navbar {
+	margin-bottom: 0px;
+}
+
+.carousel-inner img {
+	width: auto;
+ 	height: 300px;
+  	max-height: 300px;
+}
+
+div.selectbox {
+	margin-top: 10px;
+	width : 90%;
+	height: 90%;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	margin: 0 auto;
+	text-align: center;
+	transition: all 200ms ease-out;
+}
+
+div.selectbox:hover {
+	box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+	transform: scale(1.05);
+}
+
+.submit-button {
+	margin-top: 10px;
+}
+
+.center {
+	margin: 0 auto;
+}
+
+.single-form {
+	margin-top: 2%;
+}
+
+.clickable-row {
+	cursor: pointer;
+}
