@@ -13,10 +13,10 @@ public class PazienteDaoJPA extends GenericsDaoJPA<Paziente> {
 	}
 	
 	public Paziente findByEmail(String email) {
-		Query q = getEntityManager().createQuery("select p from Paziente p where p.email = ?");
+		Query q = getEntityManager().createQuery("select p from Paziente p where p.email = :email");
 		Paziente paziente;
 		try {
-			q.setParameter(1, email);
+			q.setParameter("email", email);
 			paziente = (Paziente) q.getSingleResult();
 		}
 		catch (NoResultException e) {

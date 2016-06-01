@@ -1,4 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
+<%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +22,7 @@
 
 <meta charset="utf-8">
 
-<c:if test="${logError != null}">
+<c:if test="${controllerPaziente.loginPazienteSucceded == false}">
 	<script type="text/javascript" src="showModal.js"></script>
 </c:if>
 
@@ -52,7 +56,7 @@
 <body>
 	<div class="container-fluid">
 		<div id="cookieDiv">
-			Questo sito usa i cookie perchè ce la famo prende a bene,
+			Questo sito usa i cookie perchÃ¨ ce la famo prende a bene,
 			continuando la navigazione accetti qualcosa
 			<button id="cookieOk" class="btn btn-success">
 				Ok <span class="glyphicon glyphicon-ok"></span>
@@ -78,12 +82,12 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-				<c:if test="${paziente == null}">
+				<c:if test="${controllerPaziente.paziente == null}">
 				<a href="#" data-toggle="modal" data-target="#log-in-modal"><span
 						class="glyphicon glyphicon-log-in"></span> Login</a>
 				</c:if>
-				<c:if test="${paziente != null}">
-					<h4 class="navbar-text">Benvenuto, <em>${paziente.nome}</em></h4>
+				<c:if test="${controllerPaziente.paziente != null}">
+					<h4 class="navbar-text">Benvenuto, <em>${controllerPaziente.paziente.nome}</em></h4>
 				</c:if>		
 				</li>
 			</ul>
@@ -102,26 +106,25 @@
 				</div>
 				<div class="modal-body">
 					<h1 class="glyphicon glyphicon-user center-block"></h1>
-					<form action="loginController" method="post">
-						<c:if test="${logError != null}">
+					<f:view>
+					<h:form>
+						<c:if test="${controllerPaziente.loginPazienteSucceded == false}">
 							<div class="alert alert-warning fade in">
 								<a href="#" class="close" data-dismiss="alert">&times;</a>
-								<p>c'è un errore nella password o nell' email</p>
+								<p>c'Ã¨ un errore nella password o nell' email</p>
 							</div>
 						</c:if>
 					
-						Indirizzo email: <input type="email" class="form-control"
-							name="email" value="${param['email']}"></input>
-						Password: <input type="password"
-							name="password" class="form-control"></input>
-						<div class="checkbox">
-							<label><input type="checkbox" value="ok"
-								name="keeploggedin">Rimani Connesso</label>
-						</div>
-						<button type="submit" class="submit-button btn btn-primary">Log
-							in</button>
-
-					</form>
+						Indirizzo email:
+						<h:inputText value="#{controllerPaziente.email}" styleClass="form-control"></h:inputText>
+						
+						Password:
+						<h:inputSecret value="#{controllerPaziente.password}" styleClass="form-control"></h:inputSecret>
+						
+						<h:commandLink action="#{controllerPaziente.loginPaziente}"
+						value="Login" styleClass="submit-button btn btn-primary"/>
+					</h:form>
+					</f:view>
 				</div>
 
 			</div>

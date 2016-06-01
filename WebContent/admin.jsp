@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
+<%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,29 +31,25 @@
 
 		</div>
 
-		<form action="loginAdmin" method="post">
+		<f:view>
+			<h:form>
 			<div class="form-group thumbnail">
-				<!--  <c:if test="${logError != null}">
+				<c:if test="${controllerAdmin.loginSucceded == false}">
 					<div class="alert alert-warning fade in">
 						<a href="#" class="close" data-dismiss="alert">&times;</a>
 						<p>c'è un errore nella password o nell' id</p>
 					</div>
-				</c:if> -->
-				Id: <input type="text" class="form-control" name="id"
-					value="${param['id']}"></input>
-				<!-- non mi sembra reale sta cosa
-													certo, sicuramente non deve essere quello
-													assegnato dal db -->
-				Password: <input type="password" name="password"
-					class="form-control"></input>
-				<div class="checkbox">
-					<label><input type="checkbox" value="ok"
-						name="keeploggedin">Rimani Connesso</label>
-				</div>
-				<button type="submit" class="submit-button btn btn-primary">Log
-					in</button>
+				</c:if>
+				Id: <h:inputText value="#{controllerAdmin.id}" styleClass="form-control"></h:inputText>
+				
+				Password: <h:inputSecret value="#{controllerAdmin.password}" styleClass="form-control"></h:inputSecret>
+					
+				<h:commandLink action="#{controllerAdmin.loginAdmin}"
+						value="Login" styleClass="submit-button btn btn-primary"/>
 			</div>
-		</form>
+			
+			</h:form>
+		</f:view>
 		</div>
 	</div>
 

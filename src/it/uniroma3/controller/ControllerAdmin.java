@@ -1,30 +1,46 @@
 package it.uniroma3.controller;
 
-import java.util.List;
+
 
 import it.uniroma3.model.Amministratore;
 import it.uniroma3.model.Facade;
-import it.uniroma3.model.ProductFacade;
+
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 
 @ManagedBean
 public class ControllerAdmin {
-	//@ManagedProperty(value="#{param.id}")
 	private Long id;
 	private String password;
+	private boolean loginSucceded = true;;
 	
-	private List<Amministratore> amministratori;
 	
 	@EJB
 	private Facade amministratoreFacade;
 	
-	public String listAmministratori() {
-		this.amministratori = amministratoreFacade.getAllAmministratori();
-		return "amministratori";
+	public String loginAdmin() {
+		Amministratore admin = amministratoreFacade.getAmministratore(id);
+		if (admin != null && admin.checkPassword(password)) {
+			return "/adminPanel";
+		}
+		loginSucceded = false;
+		return "/admin";
 	}
+	
+	
+	
+	public boolean isLoginSucceded() {
+		return loginSucceded;
+	}
+
+
+
+	public void setLoginSucceded(boolean loginSucceded) {
+		this.loginSucceded = loginSucceded;
+	}
+
+
 
 	public Long getId() {
 		return id;
@@ -42,13 +58,6 @@ public class ControllerAdmin {
 		this.password = password;
 	}
 
-	public List<Amministratore> getAmministratori() {
-		return amministratori;
-	}
-
-	public void setAmministratori(List<Amministratore> amministratori) {
-		this.amministratori = amministratori;
-	}
 
 	public Facade getAmministratoreFacade() {
 		return amministratoreFacade;

@@ -26,7 +26,7 @@
 		<f:view>
 		<h:form>
 			<div class="form-group thumbnail single-form">
-			<c:if test="${controllerPaziente.success == true}">
+			<c:if test="${controllerPaziente.nuovoPazienteSucceded == true}">
 				<div class="alert alert-success fade in">
 					<a href="#" class="close" data-dismiss="alert">&times;</a>
 					<p>Paziente registrato con successo! <span class="glyphicon glyphicon-ok"></span></p>

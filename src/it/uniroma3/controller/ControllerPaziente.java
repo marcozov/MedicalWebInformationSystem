@@ -19,20 +19,31 @@ public class ControllerPaziente {
 	private String cognome;
 	private String password;
 	private String email;
-	private List<Esame> esami;
 	private List<Paziente> pazienti;
-	private boolean success = false;
+	private Paziente paziente;
+	private boolean nuovoPazienteSucceded = false;
+	private boolean loginPazienteSucceded = true;
 	
 	@EJB
 	private Facade pazienteFacade;
 	
 	
 	public String aggiungiPaziente() {
-		success = false;
+		nuovoPazienteSucceded = false;
 		pazienteFacade.aggiungiPaziente(nome, cognome, email, password);
 		//se tutto va bene...
-		success = true;
+		nuovoPazienteSucceded = true;
 		return "nuovoPaziente";
+	}
+	
+	public String loginPaziente() {
+		loginPazienteSucceded = false;
+		Paziente p = pazienteFacade.getPaziente(email);
+		if (p != null && p.checkPassword(password)) {
+			loginPazienteSucceded = true;
+			paziente = p;
+		}
+		return "index";
 	}
 	
 
@@ -68,12 +79,23 @@ public class ControllerPaziente {
 		this.email = email;
 	}
 
-	public List<Esame> getEsami() {
-		return esami;
+	
+	
+
+	public Paziente getPaziente() {
+		return paziente;
 	}
 
-	public void setEsami(List<Esame> esami) {
-		this.esami = esami;
+	public void setPaziente(Paziente paziente) {
+		this.paziente = paziente;
+	}
+
+	public boolean isLoginPazienteSucceded() {
+		return loginPazienteSucceded;
+	}
+
+	public void setLoginPazienteSucceded(boolean loginPazienteSucceded) {
+		this.loginPazienteSucceded = loginPazienteSucceded;
 	}
 
 	public List<Paziente> getPazienti() {
@@ -92,15 +114,16 @@ public class ControllerPaziente {
 		this.pazienteFacade = pazienteFacade;
 	}
 
+	public boolean isNuovoPazienteSucceded() {
+		return nuovoPazienteSucceded;
+	}
 
-	public boolean isSuccess() {
-		return success;
+	public void setNuovoPazienteSucceded(boolean nuovoPazienteSucceded) {
+		this.nuovoPazienteSucceded = nuovoPazienteSucceded;
 	}
 
 
-	public void setSuccess(boolean success) {
-		this.success = success;
-	}
+	
 	
 	
 	
