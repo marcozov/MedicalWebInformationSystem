@@ -176,37 +176,44 @@
 	</div>
 
 	<div class="container">
-		<a name="tipologie"></a>
-		<h3 id="tipologie-title">Tipologie di esame offerte</h3>
+			
+			
+			
+			
+			<h3 id="tipologie-title">Tipologie di esame offerte</h3>
 
 		<!-- se il resto con 4 e' zero vuol dire che siamo sul primo elemento
 			di una riga (formata da 4 elementi), se il resto con 4 e' 3 vuol dire che
 			siamo invece sull' ultimo elemento. Nel primo caso è necessario aprire
 			una nuova riga di bootstrap nel secondo e' necessario chiuderla -->
-		
-			<c:forEach var="tipologia" items="${controllerTipologia.facade.getAllTipologieEsame()}" varStatus="status">
-			<c:if test="${status.index % 4 == 0}">
-				<div class="row">
-			</c:if>
-			<div class="col-md-3">
-				<div class="selectbox">
-					<img class="img-responsive center-block"
-						src="img/icons/${tipologia.codice}.png">
-					<h4>${tipologia.nome}</h4>
-				</div>
-			</div>
-			<c:if test="${status.index % 4 == 3}">
+		<f:view>
+			<h:form>
+				<c:forEach var="tipologia" items="#{controllerTipologia.tipologie}" varStatus="status">
+				<c:if test="${status.index % 4 == 0}">
+					<div class="row">
+				</c:if>
+				<div class="col-md-3">
 				
+					
+					<div class="selectbox">
+						<img class="img-responsive center-block"
+							src="img/icons/${tipologia.codice}.png">
+						<h4><h:commandLink action="#{controllerTipologia.findTipologia}" value="#{tipologia.nome}">
+						<f:param name="id" value="#{tipologia.id}" />
+					</h:commandLink></h4>
+					</div>
 				</div>
-			</c:if>
-			</c:forEach>
-			
-			<c:if test="${status.index % 4 != 3}">
-				</div>
-			</c:if>
-			
-			
-
+				<c:if test="${status.index % 4 == 3}">
+					
+					</div>
+				</c:if>
+				</c:forEach>
+				
+				<c:if test="${status.index % 4 != 3}">
+					</div>
+				</c:if>
+			</h:form>
+		</f:view>	
 	</div>
 
 </body>

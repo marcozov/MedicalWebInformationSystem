@@ -71,4 +71,8 @@ public class Facade {
 		return tipologiaDao.findAll();
 	}
 	
+	public TipologiaEsame getTipologiaEsame(Long id) {
+		GenericsDaoJPA<TipologiaEsame> tipologiaDao = new GenericsDaoJPA<>(em, TipologiaEsame.class);
+		return tipologiaDao.findByPrimaryKey(id);
+	}
 }

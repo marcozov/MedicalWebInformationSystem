@@ -2,22 +2,30 @@ package it.uniroma3.controller;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
 import it.uniroma3.model.Facade;
 import it.uniroma3.model.IndicatoreRisultato;
 import it.uniroma3.model.Prerequisito;
+import it.uniroma3.model.TipologiaEsame;
 import it.uniroma3.utils.JSONUtils;
 
 @ManagedBean
 public class ControllerTipologia {
+	
+	@ManagedProperty(value="#{param.id}")
+	private Long id;
 	private String codice;
 	private String nome;
 	private Double costo;
 	private String descrizione;
 	private String prerequisiti;
 	private String indicatori;
+	private List<TipologiaEsame> tipologie;
+	private TipologiaEsame tipologia;
 	
 	@EJB
 	private Facade facade;
@@ -31,7 +39,42 @@ public class ControllerTipologia {
 		return "nuovaTipologia";
 	}
 	
+	@PostConstruct
+	public void elencoTipologie() {
+		this.tipologie = this.facade.getAllTipologieEsame();
+	}
+	
+	public String findTipologia() {
+		this.tipologia = this.facade.getTipologiaEsame(id);
+		return "tipologia";
+	}
+	
+	// getter e setter
+	
+	public List<TipologiaEsame> getTipologie() {
+		return tipologie;
+	}
 
+	public TipologiaEsame getTipologia() {
+		return tipologia;
+	}
+
+	public void setTipologia(TipologiaEsame tipologia) {
+		this.tipologia = tipologia;
+	}
+
+	public void setTipologie(List<TipologiaEsame> tipologie) {
+		this.tipologie = tipologie;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getCodice() {
 		return codice;
 	}
