@@ -58,4 +58,17 @@ public class Facade {
 		
 	}
 	
+	public void inserisciTipologia(String codice, String nome, String descrizione, double costo, List<Prerequisito> prerequisiti, List<IndicatoreRisultato> indicatori) {
+		TipologiaEsame tipologia = new TipologiaEsame(codice, nome, descrizione, costo);
+		tipologia.setPrerequisiti(prerequisiti);
+		tipologia.setIndicatoriRisultato(indicatori);
+		GenericsDao<TipologiaEsame> tipologiaDao = new GenericsDaoJPA<>(em, TipologiaEsame.class);
+		tipologiaDao.save(tipologia);
+	}
+	
+	public List<TipologiaEsame> getAllTipologieEsame() {
+		GenericsDao<TipologiaEsame> tipologiaDao = new GenericsDaoJPA<>(em, TipologiaEsame.class);
+		return tipologiaDao.findAll();
+	}
+	
 }

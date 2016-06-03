@@ -179,55 +179,33 @@
 		<a name="tipologie"></a>
 		<h3 id="tipologie-title">Tipologie di esame offerte</h3>
 
-		<div class="row">
+		<!-- se il resto con 4 e' zero vuol dire che siamo sul primo elemento
+			di una riga (formata da 4 elementi), se il resto con 4 e' 3 vuol dire che
+			siamo invece sull' ultimo elemento. Nel primo caso è necessario aprire
+			una nuova riga di bootstrap nel secondo e' necessario chiuderla -->
+		
+			<c:forEach var="tipologia" items="${controllerTipologia.facade.getAllTipologieEsame()}" varStatus="status">
+			<c:if test="${status.index % 4 == 0}">
+				<div class="row">
+			</c:if>
 			<div class="col-md-3">
 				<div class="selectbox">
 					<img class="img-responsive center-block"
-						src="img/icons/syringe.png">
-					<h4>Analisi del sangue</h4>
+						src="img/icons/${tipologia.codice}.png">
+					<h4>${tipologia.nome}</h4>
 				</div>
 			</div>
-			<div class="col-md-3">
-				<div class="selectbox">
-					<img class="img-responsive center-block"
-						src="img/icons/test-tube.png">
-					<h4>Analisi delle urine</h4>
+			<c:if test="${status.index % 4 == 3}">
+				
 				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="selectbox">
-					<h4>Analisi del cecio</h4>
+			</c:if>
+			</c:forEach>
+			
+			<c:if test="${status.index % 4 != 3}">
 				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="selectbox">
-					<h4>Analisi boh</h4>
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-3">
-				<div class="selectbox">
-					<h1>2.1</h1>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="selectbox">
-					<h1>2.2</h1>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="selectbox">
-					<h1>2.3</h1>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="selectbox">
-					<h1>2.4</h1>
-				</div>
-			</div>
-		</div>
+			</c:if>
+			
+			
 
 	</div>
 

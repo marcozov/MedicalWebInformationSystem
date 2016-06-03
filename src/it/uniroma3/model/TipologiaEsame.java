@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,13 +34,13 @@ public class TipologiaEsame {
 	@Column(nullable = false)
 	private double costo;
 	
-	@OneToMany
+	@OneToMany(cascade={CascadeType.PERSIST})
 	@JoinColumn(name = "tipologia_id")		// dice con che attributo la tabella degli indicatori dei risultati
 											// dovra' indicare la tipologia dell'esame
 											// notare l'assenza di doppia navigabilita'
 	private List<IndicatoreRisultato> indicatoriRisultato;
 
-	@OneToMany
+	@OneToMany(cascade={CascadeType.PERSIST})
 	@JoinColumn(name = "tipologia_id")		// come indicatoriRisultato
 	private List<Prerequisito> prerequisiti;
 	
