@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsf/core"%>
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <!DOCTYPE html>
@@ -54,6 +54,7 @@
 <title>Clinica Chescio Rescio</title>
 </head>
 <body>
+	<f:view>
 	<div class="container-fluid">
 		<div id="cookieDiv">
 			Questo sito usa i cookie perchè ce la famo prende a bene,
@@ -82,11 +83,11 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				<li>
-				<c:if test="${controllerPaziente.paziente == null}">
+				<c:if test="${controllerPaziente.paziente eq null}">
 				<a href="#" data-toggle="modal" data-target="#log-in-modal"><span
 						class="glyphicon glyphicon-log-in"></span> Login</a>
 				</c:if>
-				<c:if test="${controllerPaziente.paziente != null}">
+				<c:if test="${controllerPaziente.paziente ne null}">
 					<h4 class="navbar-text">Benvenuto, <em>${controllerPaziente.paziente.nome}</em></h4>
 				</c:if>		
 				</li>
@@ -105,16 +106,19 @@
 					<h4 class="modal-title">Log in</h4>
 				</div>
 				<div class="modal-body">
-					<h1 class="glyphicon glyphicon-user center-block"></h1>
-					<f:view>
-					<h:form>
-						<c:if test="${controllerPaziente.loginPazienteSucceded == false}">
+				
+					<h1><span class="glyphicon glyphicon-user center-block"></span></h1>
+						
+						<c:if test="${controllerPaziente.loginPazienteSucceded eq false}">
 							<div class="alert alert-warning fade in">
 								<a href="#" class="close" data-dismiss="alert">&times;</a>
 								<p>c'è un errore nella password o nell' email</p>
 							</div>
 						</c:if>
-					
+						
+						
+						<h:form>
+						
 						Indirizzo email:
 						<h:inputText value="#{controllerPaziente.email}" styleClass="form-control"></h:inputText>
 						
@@ -123,8 +127,9 @@
 						
 						<h:commandLink action="#{controllerPaziente.loginPaziente}"
 						value="Login" styleClass="submit-button btn btn-primary"/>
-					</h:form>
-					</f:view>
+						
+						</h:form>
+
 				</div>
 
 			</div>
@@ -186,7 +191,6 @@
 			di una riga (formata da 4 elementi), se il resto con 4 e' 3 vuol dire che
 			siamo invece sull' ultimo elemento. Nel primo caso è necessario aprire
 			una nuova riga di bootstrap nel secondo e' necessario chiuderla -->
-		<f:view>
 			<h:form>
 				<c:forEach var="tipologia" items="#{controllerTipologia.tipologie}" varStatus="status">
 				<c:if test="${status.index % 4 == 0}">
@@ -213,8 +217,10 @@
 					</div>
 				</c:if>
 			</h:form>
-		</f:view>	
+			
 	</div>
+
+	</f:view>
 
 </body>
 </html>

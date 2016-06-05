@@ -48,6 +48,8 @@ public class Esame {
 										// fra TipologiaEsame e Prerequisito e TipologiaEsame e IndicatoreRisultato
 	private List<Risultato> risultati;
 
+	public Esame() {}
+	
 	public Esame(Date dataPrenotazione, Date dataEsame, Paziente paziente, TipologiaEsame tipologiaEsame,
 			Medico medico) {
 		this.dataPrenotazione = dataPrenotazione;
