@@ -30,8 +30,8 @@
 		<ul class="nav nav-pills nav-stacked">
 			<li><a  href='<c:url value="nuovoPaziente.jsp"></c:url>'>Inserisci paziente <span
 					class="glyphicon glyphicon-chevron-right"></span></a></li>
-			<li><a href="#">Inserisci Tipologia Esame</a></li>
-			<li><a href="#">Inserisci Esame</a></li>
+			<li><a href='<c:url value="admin/nuovaTipologia.jsp"></c:url>'>Inserisci Tipologia Esame</a></li>
+			<li><a href='<c:url value="nuovoEsame.jsp"></c:url>'>Inserisci Esame</a></li>
 			<li><a href="#">Inserisci risultati di un esame</a></li>
 		</ul>
 	</div>

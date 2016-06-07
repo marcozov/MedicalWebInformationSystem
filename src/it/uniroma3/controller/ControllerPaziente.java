@@ -8,6 +8,7 @@ import it.uniroma3.model.Facade;
 import it.uniroma3.model.Paziente;
 import it.uniroma3.model.ProductFacade;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.persistence.Column;
@@ -27,6 +28,10 @@ public class ControllerPaziente {
 	@EJB
 	private Facade pazienteFacade;
 	
+	@PostConstruct
+	public void elencoPazienti() {
+		this.pazienti = this.pazienteFacade.getAllPazienti();
+	}
 	
 	public String aggiungiPaziente() {
 		nuovoPazienteSucceded = false;

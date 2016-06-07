@@ -3,6 +3,7 @@ package it.uniroma3.model;
 import it.uniroma3.persistence.GenericsDao;
 import it.uniroma3.persistence.GenericsDaoJPA;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -36,7 +37,12 @@ public class Facade {
 		PazienteDaoJPA pazienteDao = new PazienteDaoJPA(em);
 		Paziente paziente = pazienteDao.findByEmail(email);
 		return paziente;
-		
+	}
+	
+	public Paziente getPaziente(Long id) {		
+		PazienteDaoJPA pazienteDao = new PazienteDaoJPA(em);
+		Paziente paziente = pazienteDao.findByPrimaryKey(id);
+		return paziente;
 	}
 	
 	public Amministratore getAmministratore(Long id) {
@@ -55,7 +61,12 @@ public class Facade {
 		GenericsDaoJPA<Medico> medicoDao = new GenericsDaoJPA<>(em, Medico.class);
 		List<Medico> medici = medicoDao.findAll();
 		return medici;
-		
+	}
+	
+	public List<Paziente> getAllPazienti() {
+		GenericsDao<Paziente> pazienteDao = new GenericsDaoJPA<>(em, Paziente.class);
+		List<Paziente> pazienti = pazienteDao.findAll();
+		return pazienti;
 	}
 	
 	public void inserisciTipologia(String codice, String nome, String descrizione, double costo, List<Prerequisito> prerequisiti, List<IndicatoreRisultato> indicatori) {
@@ -74,5 +85,16 @@ public class Facade {
 	public TipologiaEsame getTipologiaEsame(Long id) {
 		GenericsDaoJPA<TipologiaEsame> tipologiaDao = new GenericsDaoJPA<>(em, TipologiaEsame.class);
 		return tipologiaDao.findByPrimaryKey(id);
+	}
+	
+	public void inserisciEsame(Date dataPrenotazione, Date dataEsame, Paziente paziente, TipologiaEsame tipologiaEsame, Medico medico) {
+		GenericsDaoJPA<Esame> esameDao = new GenericsDaoJPA<>(em, Esame.class);
+		Esame esame = new Esame(dataPrenotazione, dataEsame, paziente, tipologiaEsame, medico);
+		esameDao.save(esame);
+	}
+	
+	public Medico getMedico(Long id) {
+		GenericsDao<Medico> medicoDao = new GenericsDaoJPA<>(em, Medico.class);
+		return medicoDao.findByPrimaryKey(id);
 	}
 }
