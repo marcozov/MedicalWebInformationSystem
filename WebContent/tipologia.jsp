@@ -36,15 +36,21 @@
 			<li class="list-group-item">Prezzo: ${controllerTipologia.tipologia.costo}</li>
 			<li class="list-group-item">Descrizione: ${controllerTipologia.tipologia.descrizione}</li>
 			<li class="list-group-item">
+			Prerequisiti:
 			<ul>
-			<c:forEach var="pre" items="${controllerTipologia.tipologia.prerequisiti}">
+				<c:forEach var="pre" items="${controllerTipologia.tipologia.prerequisiti}">
 				<li>
-				${pre.nome}:
-				${pre.descrizione}
-				<li>
-			</c:forEach>
+					Nome: ${pre.nome}
+					Descrizione: ${pre.descrizione}
+				</li>
+				</c:forEach>
+			
 			</ul>
 			</li>
+			
+			<c:if test="${controllerTipologia.tipologia.prerequisiti == null}">
+				!--è null
+			</c:if>
 	</ul>
 	</div>
 	

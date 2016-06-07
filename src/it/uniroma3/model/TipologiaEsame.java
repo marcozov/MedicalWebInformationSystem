@@ -1,5 +1,6 @@
 package it.uniroma3.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Map;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,7 +42,7 @@ public class TipologiaEsame {
 											// notare l'assenza di doppia navigabilita'
 	private List<IndicatoreRisultato> indicatoriRisultato;
 
-	@OneToMany(cascade={CascadeType.PERSIST})
+	@OneToMany(cascade={CascadeType.PERSIST},fetch=FetchType.EAGER)
 	@JoinColumn(name = "tipologia_id")		// come indicatoriRisultato
 	private List<Prerequisito> prerequisiti;
 	
@@ -49,18 +51,20 @@ public class TipologiaEsame {
 											// a definire quale attributo fara' riferimento a TipologiaEsame
 	private List<Esame> esami;
 
-	public TipologiaEsame(){}
+	public TipologiaEsame(){
+		this.prerequisiti = new LinkedList<>();
+		this.indicatoriRisultato = new LinkedList<>();
+		this.esami = new LinkedList<>();
+	}
 	
 	public TipologiaEsame(String codice, String nome, String descrizione, double costo) {
+		this();
 		this.codice = codice;
 		this.nome = nome;
 		this.descrizione = descrizione;
 		this.costo = costo;
 		
-		/* TODO DOVREBBE ESSERE UNA MAPPA, COME GESTIRLA CON JPA ?? */
-		this.indicatoriRisultato = new LinkedList<>();
-		this.prerequisiti = new LinkedList<>();
-		this.esami = new LinkedList<>();
+		
 	}
 	
 	public Long getId() {
