@@ -32,6 +32,9 @@ public class ControllerEsame {
 	private List<Risultato> risultati;
 	private boolean nuovoEsameSucceded = false;
 	
+	private List<Esame> esamiMedicoScelto;   // Non so quanto sia corretto che sia qui
+											 // Se non qui dove???
+	
 	@EJB Facade facade;
 	
 	public String aggiungiEsame() {
@@ -43,6 +46,11 @@ public class ControllerEsame {
 		facade.inserisciEsame(dataPrenotazione, dataEsame, paziente, tipologiaEsame, medico);
 		nuovoEsameSucceded = true;
 		return "nuovoEsame";
+	}
+	
+	public String findEsamiPerMedico() {
+		esamiMedicoScelto = facade.getEsamiPerMedico(idmedico);
+		return "esamiPerMedico";
 	}
 	
 	public Long getIdpaziente() {
@@ -133,5 +141,15 @@ public class ControllerEsame {
 	public void setFacade(Facade facade) {
 		this.facade = facade;
 	}
+
+	public List<Esame> getEsamiMedicoScelto() {
+		return esamiMedicoScelto;
+	}
+
+	public void setEsamiMedicoScelto(List<Esame> esamiMedicoScelto) {
+		this.esamiMedicoScelto = esamiMedicoScelto;
+	}
+	
+	
 	
 }

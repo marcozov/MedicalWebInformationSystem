@@ -1,5 +1,6 @@
 package it.uniroma3.model;
 
+import it.uniroma3.persistence.EsameDaoJPA;
 import it.uniroma3.persistence.GenericsDao;
 import it.uniroma3.persistence.GenericsDaoJPA;
 
@@ -96,5 +97,10 @@ public class Facade {
 	public Medico getMedico(Long id) {
 		GenericsDao<Medico> medicoDao = new GenericsDaoJPA<>(em, Medico.class);
 		return medicoDao.findByPrimaryKey(id);
+	}
+
+	public List<Esame> getEsamiPerMedico(Long idmedico) {
+		EsameDaoJPA esameDao = new EsameDaoJPA(em);
+		return esameDao.findAllByMedicoId(idmedico);
 	}
 }

@@ -55,7 +55,7 @@
 			
 			Paziente: <h:selectOneMenu value="#{controllerEsame.idpaziente}">
 			<c:forEach var="paziente" items="#{controllerPaziente.pazienti}">
-				<f:selectItem itemValue="#{paziente.id}" itemLabel="#{paziente.nome}" />
+				<f:selectItem itemValue="#{paziente.id}" itemLabel="#{paziente.nome} #{paziente.cognome}" />
 			</c:forEach>
 			</h:selectOneMenu>
 			
