@@ -46,6 +46,11 @@ public class Facade {
 		return paziente;
 	}
 	
+	public Esame getEsame(Long id) {
+		GenericsDao<Esame> esameDao = new GenericsDaoJPA<Esame>(em, Esame.class);
+		return esameDao.findByPrimaryKey(id);
+	}
+	
 	public Amministratore getAmministratore(Long id) {
 		GenericsDaoJPA<Amministratore> amministratoreDao = new GenericsDaoJPA<Amministratore>(em, Amministratore.class);
 		Amministratore amministratore = amministratoreDao.findByPrimaryKey(id);
@@ -62,6 +67,12 @@ public class Facade {
 		GenericsDaoJPA<Medico> medicoDao = new GenericsDaoJPA<>(em, Medico.class);
 		List<Medico> medici = medicoDao.findAll();
 		return medici;
+	}
+	
+	public List<Esame> getAllEsami() {
+		GenericsDaoJPA<Esame> esameDao = new GenericsDaoJPA<>(em, Esame.class);
+		List<Esame> esami = esameDao.findAll();
+		return esami;
 	}
 	
 	public List<Paziente> getAllPazienti() {

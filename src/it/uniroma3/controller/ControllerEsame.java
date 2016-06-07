@@ -3,6 +3,7 @@ package it.uniroma3.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
@@ -17,6 +18,7 @@ import it.uniroma3.model.TipologiaEsame;
 
 @ManagedBean
 public class ControllerEsame {
+	@ManagedProperty(value="#{param.id}")
 	private Long id;
 	private Date dataEsame;
 	private Date dataPrenotazione;
@@ -34,8 +36,15 @@ public class ControllerEsame {
 	
 	private List<Esame> esamiMedicoScelto;   // Non so quanto sia corretto che sia qui
 											 // Se non qui dove???
+	private List<Esame> esami;
+	private Esame esame;
 	
 	@EJB Facade facade;
+	
+	@PostConstruct
+	public void elencoEsami() {
+		this.esami = facade.getAllEsami();
+	}
 	
 	public String aggiungiEsame() {
 		nuovoEsameSucceded = false;
@@ -51,6 +60,11 @@ public class ControllerEsame {
 	public String findEsamiPerMedico() {
 		esamiMedicoScelto = facade.getEsamiPerMedico(idmedico);
 		return "esamiPerMedico";
+	}
+	
+	public String findEsame() {
+		this.esame = facade.getEsame(id);
+		return "esameInserisciRisultato";
 	}
 	
 	public Long getIdpaziente() {
@@ -148,6 +162,22 @@ public class ControllerEsame {
 
 	public void setEsamiMedicoScelto(List<Esame> esamiMedicoScelto) {
 		this.esamiMedicoScelto = esamiMedicoScelto;
+	}
+
+	public List<Esame> getEsami() {
+		return esami;
+	}
+
+	public void setEsami(List<Esame> esami) {
+		this.esami = esami;
+	}
+
+	public Esame getEsame() {
+		return esame;
+	}
+
+	public void setEsame(Esame esame) {
+		this.esame = esame;
 	}
 	
 	
