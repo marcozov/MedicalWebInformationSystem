@@ -3,6 +3,7 @@ package it.uniroma3.model;
 import it.uniroma3.persistence.EsameDaoJPA;
 import it.uniroma3.persistence.GenericsDao;
 import it.uniroma3.persistence.GenericsDaoJPA;
+import it.uniroma3.persistence.IndicatoreRisultatoDaoJPA;
 
 import java.util.Date;
 import java.util.List;
@@ -113,5 +114,20 @@ public class Facade {
 	public List<Esame> getEsamiPerMedico(Long idmedico) {
 		EsameDaoJPA esameDao = new EsameDaoJPA(em);
 		return esameDao.findAllByMedicoId(idmedico);
+	}
+	
+	public List<IndicatoreRisultato> getIndicatoriPerTipologia(long idtipologia) {
+		IndicatoreRisultatoDaoJPA indicatoreDao = new IndicatoreRisultatoDaoJPA(em);
+		return indicatoreDao.findAllByTipologiaId(idtipologia);
+	}
+	
+	public void aggiungiRisultato(Risultato risultato) {
+		GenericsDao<Risultato> indicatoreDao = new GenericsDaoJPA<Risultato>(em, Risultato.class);
+		indicatoreDao.save(risultato);
+	}
+	
+	public IndicatoreRisultato getIndicatoreRisultato(Long id) {
+		GenericsDao<IndicatoreRisultato> indicatoreDao = new GenericsDaoJPA<IndicatoreRisultato>(em, IndicatoreRisultato.class);
+		return indicatoreDao.findByPrimaryKey(id);
 	}
 }

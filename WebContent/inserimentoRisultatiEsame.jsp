@@ -65,6 +65,7 @@
 					<tr>
 						<td name="id"><h:commandLink action="#{controllerEsame.findEsame}" value="#{esame.id}">
 						<f:param name="id" value="#{esame.id}"></f:param>
+						<f:param name="idtipologia" value="#{esame.tipologiaEsame.id}"></f:param>
 						</h:commandLink></td>
 						<td name="dataEsame">${esame.dataEsame}</td>
 						<td name="dataPrenotazione">${esame.dataPrenotazione}</td>

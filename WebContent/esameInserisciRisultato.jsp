@@ -22,11 +22,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Tipologia</title>
+<title>Inserimento dei risultati</title>
 </head>
 <body>
 	<div class="container">
-	
+	<c:if test="${controllerRisultato.nuovoRisultatoSucceded == true}">
+				<div class="alert alert-success fade in">
+					<a href="#" class="close" data-dismiss="alert">&times;</a>
+					<p>Risultato inserito con successo! <span class="glyphicon glyphicon-ok"></span></p>
+				</div>
+			</c:if>
 	<div class="page-header">
 		<h1>Codice Esame: ${controllerEsame.esame.id}</h1>
 	</div>
@@ -38,7 +43,25 @@
 			<li class="list-group-item">Medico: ${controllerEsame.esame.medico.nome} ${controllerEsame.esame.medico.cognome}</li>
 			<li class="list-group-item">Paziente: ${controllerEsame.esame.paziente.nome} ${controllerEsame.esame.paziente.cognome}</li>
 	</ul>
-	<p>Inserisci i risultati</p>
+	<f:view>
+	<h:form>
+	
+	Indicatore: <h:selectOneMenu value="#{controllerRisultato.idindicatore}">
+			<c:forEach var="indicatore" items="#{controllerEsame.listaIndicatori}">
+				<f:selectItem itemValue="#{indicatore.id}" itemLabel="#{indicatore.nome}" />
+			</c:forEach>
+			</h:selectOneMenu>
+			<br />
+	Risultato: <h:inputText value="#{controllerRisultato.valore}" styleClass="form-control"
+			required="true" requiredMessage="Va inserito un valore per il risultato" id="valore" />
+			
+			<h:commandLink action="#{controllerRisultato.aggiungiRisultato}" value="Inserisci Risultato">
+				<f:param name="idesame" value="#{controllerEsame.esame.id}"></f:param>
+			</h:commandLink>
+	
+	</h:form>
+	</f:view>
+	
 	</div>
 </body>
 </html>

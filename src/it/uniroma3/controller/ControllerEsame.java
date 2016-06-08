@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedProperty;
 
 import it.uniroma3.model.Facade;
 import it.uniroma3.model.Esame;
+import it.uniroma3.model.IndicatoreRisultato;
 import it.uniroma3.model.Medico;
 import it.uniroma3.model.Paziente;
 import it.uniroma3.model.Risultato;
@@ -39,6 +40,10 @@ public class ControllerEsame {
 	private List<Esame> esami;
 	private Esame esame;
 	
+	// serve qualcosa con gli indicatori di risultato relativi a una certa tipologia, per poter inserire
+	// relativi risultati (UC6)
+	private List<IndicatoreRisultato> listaIndicatori;
+	
 	@EJB Facade facade;
 	
 	@PostConstruct
@@ -64,6 +69,8 @@ public class ControllerEsame {
 	
 	public String findEsame() {
 		this.esame = facade.getEsame(id);
+		// idtipologia dovrebbe essere disponibile
+		listaIndicatori = facade.getIndicatoriPerTipologia(idtipologia);
 		return "esameInserisciRisultato";
 	}
 	
@@ -179,7 +186,14 @@ public class ControllerEsame {
 	public void setEsame(Esame esame) {
 		this.esame = esame;
 	}
-	
+
+	public List<IndicatoreRisultato> getListaIndicatori() {
+		return listaIndicatori;
+	}
+
+	public void setListaIndicatori(List<IndicatoreRisultato> listaIndicatori) {
+		this.listaIndicatori = listaIndicatori;
+	}
 	
 	
 }

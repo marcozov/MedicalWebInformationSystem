@@ -26,10 +26,22 @@ public class ControllerTipologia {
 	private String prerequisiti;
 	private String indicatori;
 	private List<TipologiaEsame> tipologie;
+	
+	@ManagedProperty(value="#{param.idtipologia}")
+	private Long idtipologia;
 	private TipologiaEsame tipologia;
+	
+	// serve qualcosa con gli indicatori di risultato relativi a una certa tipologia, per poter inserire
+	// relativi risultati (UC6)... mi sa che non va qui, ma in ControllerEsame
+	private List<IndicatoreRisultato> listaIndicatori;
 	
 	@EJB
 	private Facade facade;
+	
+	
+	public void elencoIndicatoriPerUnaTipologia() {
+		listaIndicatori = facade.getIndicatoriPerTipologia(idtipologia);
+	}
 	
 	public String inserisci() {
 		List<Prerequisito> prerequisiti = JSONUtils.getPrerequisiti(this.prerequisiti);
@@ -132,6 +144,20 @@ public class ControllerTipologia {
 		this.costo = costo;
 	}
 
-		
+	public List<IndicatoreRisultato> getListaIndicatori() {
+		return listaIndicatori;
+	}
+
+	public void setListaIndicatori(List<IndicatoreRisultato> listaIndicatori) {
+		this.listaIndicatori = listaIndicatori;
+	}
+
+	public Long getIdtipologia() {
+		return idtipologia;
+	}
+
+	public void setIdtipologia(Long idtipologia) {
+		this.idtipologia = idtipologia;
+	}
 	
 }
