@@ -28,7 +28,7 @@
 	<div class="container">
 	
 	<div class="page-header">
-		<h1>${controllerEsame.esame.id}</h1>
+		<h1>Codice Esame: ${controllerEsame.esame.id}</h1>
 	</div>
 	<h2>Dettagli</h2>
 	<ul class="list-group">
