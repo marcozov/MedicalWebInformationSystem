@@ -34,7 +34,7 @@ public class ControllerRisultato {
 	
 	public String aggiungiRisultato() {
 		nuovoRisultatoSucceded = false;
-	//	Esame esame = facade.getEsame(idesame); // il Risultato non ha un riferimento all'esame... quindi forse va messa la doppia navigabilita'
+	//	Esame esame = facade.getEsame(idesame);
 		IndicatoreRisultato indicatore = facade.getIndicatoreRisultato(idindicatore);
 		Risultato risultato = new Risultato();
 		risultato.setValore(valore);
