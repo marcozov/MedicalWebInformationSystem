@@ -22,7 +22,7 @@ public class ControllerAdmin {
 	public String loginAdmin() {
 		Amministratore admin = amministratoreFacade.getAmministratore(id);
 		if (admin != null && admin.checkPassword(password)) {
-			return "/adminPanel";
+			return "admin/adminPanel";
 		}
 		loginSucceded = false;
 		return "/admin";
