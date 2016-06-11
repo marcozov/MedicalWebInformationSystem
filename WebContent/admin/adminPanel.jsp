@@ -28,12 +28,12 @@
 			<h1>Admin Panel</h1>
 		</div>
 		<ul class="nav nav-pills nav-stacked">
-			<li><a  href='<c:url value="admin/nuovoPaziente.jsp"></c:url>'>Inserisci paziente <span
+			<li><a  href='<c:url value="nuovoPaziente.jsp"></c:url>'>Inserisci paziente <span
 					class="glyphicon glyphicon-chevron-right"></span></a></li>
-			<li><a href='<c:url value="admin/nuovaTipologia.jsp"></c:url>'>Inserisci Tipologia Esame</a></li>
-			<li><a href='<c:url value="admin/nuovoEsame.jsp"></c:url>'>Inserisci Esame</a></li>
-			<li><a href='<c:url value="admin/inserimentoRisultatiEsame.jsp"></c:url>'>Inserisci risultati di un esame</a></li>
-			<li><a href='<c:url value="admin/medici.jsp"></c:url>'>Visualizza tutti gli esami effettuati da un medico</a></li>
+			<li><a href='<c:url value="nuovaTipologia.jsp"></c:url>'>Inserisci Tipologia Esame</a></li>
+			<li><a href='<c:url value="nuovoEsame.jsp"></c:url>'>Inserisci Esame</a></li>
+			<li><a href='<c:url value="inserimentoRisultatiEsame.jsp"></c:url>'>Inserisci risultati di un esame</a></li>
+			<li><a href='<c:url value="medici.jsp"></c:url>'>Visualizza tutti gli esami effettuati da un medico</a></li>
 		</ul>
 	</div>
 </body>
