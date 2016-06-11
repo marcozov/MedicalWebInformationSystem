@@ -99,18 +99,20 @@
 	</div>
 
 	<!-- FINE LOG IN MODAL -->
-	<h3>${tipologiaEsame.nome}</h3>
+	<h3>${controllerTipologia.tipologia.nome}</h3>
 	<div class="page-header">
+	    <h4><li class="list-group-item">Codice: ${controllerTipologia.tipologia.codice}</li></h4>
 		<h4>
 			Descrizione Esame: <br>
 		</h4>
-		<p class="lead">${tipologiaEsame.descrizione }</p>
+		<p class="lead">${controllerTipologia.tipologia.descrizione}</p>
 	</div>
 	<div class="page-header">
 		<h4>Indicatori Risultato:</h4>
 		<p class="lead">la nostra clinica per questa tipologia mette a
-			disposizione i se guenti indicatori</p>
+			disposizione i seguenti indicatori</p>
 		<ul>
+		<h1>DA GESTIRE INDICATORI RISULTATO</h1>
 			<div class="row">
 			  
 			  <div class="col-md-4"> <b>Indicatori</b> </div>
@@ -131,7 +133,7 @@
 			  
 			  <div class="col-xs-12 col-sm-6 col-lg-8"> <b>Prerequisiti</b> </div>
 				<c:forEach var="prerequisito"
-					items="${tipologiaEsame.prerequisiti }">
+					items="${controllerTipologia.tipologia.prerequisiti}">
 					<div class="col-md-4">${prerequisito.nome}</div>
 					<div class="col-md-4">${prerequisito.descrizione}</div>
 				</c:forEach>
