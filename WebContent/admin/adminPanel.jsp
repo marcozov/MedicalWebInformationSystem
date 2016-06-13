@@ -32,7 +32,7 @@
 					class="glyphicon glyphicon-chevron-right"></span></a></li>
 			<li><a href='<c:url value="admin/nuovaTipologia.jsp"></c:url>'>Inserisci Tipologia Esame</a></li>
 			<li><a href='<c:url value="admin/nuovoEsame.jsp"></c:url>'>Inserisci Esame</a></li>
-			<li><a href="#">Inserisci risultati di un esame</a></li>
+			<li><a href='<c:url value="admin/inserimentoRisultatiEsame.jsp"></c:url>'>Inserisci risultati di un esame</a></li>
 		</ul>
 	</div>
 </body>

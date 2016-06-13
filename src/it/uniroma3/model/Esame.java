@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -44,7 +45,7 @@ public class Esame {
 	@JoinColumn(name = "medico_id")
 	private Medico medico;
 	
-	@OneToMany
+	@OneToMany(cascade={CascadeType.MERGE})
 	@JoinColumn(name = "esame_id")		// assenza di doppia navigabilita': come per le associazioni
 										// fra TipologiaEsame e Prerequisito e TipologiaEsame e IndicatoreRisultato
 	private List<Risultato> risultati;

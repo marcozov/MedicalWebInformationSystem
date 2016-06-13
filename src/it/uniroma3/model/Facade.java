@@ -103,4 +103,29 @@ public class Facade {
 		EsameDaoJPA esameDao = new EsameDaoJPA(em);
 		return esameDao.findAllByMedicoId(idmedico);
 	}
+	
+	public List<Esame> getAllEsami() {
+		GenericsDao<Esame> esameDao = new GenericsDaoJPA<>(em, Esame.class);
+		return esameDao.findAll();
+	}
+	
+	public Esame getEsame(Long id) {
+		GenericsDao<Esame> esameDao = new GenericsDaoJPA<>(em, Esame.class);
+		return esameDao.findByPrimaryKey(id);
+	}
+	
+	public IndicatoreRisultato getIndicatore(Long id) {
+		GenericsDao<IndicatoreRisultato> indicatoreDao = new GenericsDaoJPA<>(em, IndicatoreRisultato.class);
+		return indicatoreDao.findByPrimaryKey(id);
+	}
+
+	public void inserisciRisultato(Risultato risultato) {
+		GenericsDao<Risultato> risultatoDao = new GenericsDaoJPA<>(em, Risultato.class);
+		risultatoDao.save(risultato);
+	}
+	
+	public void updateEsame(Esame esame) {
+		GenericsDao<Esame> esameDao = new GenericsDaoJPA<>(em, Esame.class);
+		esameDao.update(esame);
+	}
 }
