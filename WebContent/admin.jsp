@@ -34,7 +34,7 @@
 		<f:view>
 			<h:form>
 			<div class="form-group thumbnail">
-				<c:if test="${controllerAdmin.loginSucceded == false}">
+				<c:if test="${controllerAdmin.loginSucceded eq false and controllerAdmin.loginTried eq true}">
 					<div class="alert alert-warning fade in">
 						<a href="#" class="close" data-dismiss="alert">&times;</a>
 						<p>c'è un errore nella password o nell' id</p>

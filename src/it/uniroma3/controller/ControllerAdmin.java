@@ -21,12 +21,14 @@ public class ControllerAdmin implements Serializable {
 	private Long id;
 	private String password;
 	private boolean loginSucceded = false;
+	private boolean loginTried = false;
 	
 	
 	@EJB
 	private Facade amministratoreFacade;
 	
 	public String loginAdmin() {
+		loginTried = true;
 		Amministratore admin = amministratoreFacade.getAmministratore(id);
 		if (admin != null && admin.checkPassword(password)) {
 			loginSucceded = true;
@@ -73,6 +75,18 @@ public class ControllerAdmin implements Serializable {
 
 	public void setAmministratoreFacade(Facade amministratoreFacade) {
 		this.amministratoreFacade = amministratoreFacade;
+	}
+
+
+
+	public boolean isLoginTried() {
+		return loginTried;
+	}
+
+
+
+	public void setLoginTried(boolean loginTried) {
+		this.loginTried = loginTried;
 	}
 	
 	
