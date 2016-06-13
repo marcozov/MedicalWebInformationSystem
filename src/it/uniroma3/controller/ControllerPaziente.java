@@ -11,10 +11,12 @@ import it.uniroma3.model.ProductFacade;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.persistence.Column;
 import javax.persistence.OneToMany;
 
 @ManagedBean
+@SessionScoped
 public class ControllerPaziente {
 	private String nome;
 	private String cognome;
@@ -23,7 +25,8 @@ public class ControllerPaziente {
 	private List<Paziente> pazienti;
 	private Paziente paziente;
 	private boolean nuovoPazienteSucceded = false;
-	private boolean loginPazienteSucceded = true;
+	private boolean loginPazienteSucceded = false;
+	private boolean loginTried = false;
 	
 	@EJB
 	private Facade pazienteFacade;
@@ -42,7 +45,7 @@ public class ControllerPaziente {
 	}
 	
 	public String loginPaziente() {
-		loginPazienteSucceded = false;
+		loginTried = true;
 		Paziente p = pazienteFacade.getPaziente(email);
 		if (p != null && p.checkPassword(password)) {
 			loginPazienteSucceded = true;
@@ -127,6 +130,15 @@ public class ControllerPaziente {
 		this.nuovoPazienteSucceded = nuovoPazienteSucceded;
 	}
 
+	public boolean isLoginTried() {
+		return loginTried;
+	}
+
+	public void setLoginTried(boolean loginTried) {
+		this.loginTried = loginTried;
+	}
+
+	
 
 	
 	

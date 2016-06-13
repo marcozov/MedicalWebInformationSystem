@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import it.uniroma3.controller.ControllerAdmin;
 
-public class LoginFilter implements Filter {
+public class AdminLoginFilter implements Filter {
 	
 
 	@Override

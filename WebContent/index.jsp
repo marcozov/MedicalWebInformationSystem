@@ -22,7 +22,7 @@
 
 <meta charset="utf-8">
 
-<c:if test="${controllerPaziente.loginPazienteSucceded == false}">
+<c:if test="${controllerPaziente.loginPazienteSucceded eq false and controllerPaziente.loginTried eq true}">
 	<script type="text/javascript" src="showModal.js"></script>
 </c:if>
 
@@ -109,7 +109,7 @@
 				
 					<h1><span class="glyphicon glyphicon-user center-block"></span></h1>
 						
-						<c:if test="${controllerPaziente.loginPazienteSucceded eq false}">
+						<c:if test="${controllerPaziente.loginPazienteSucceded eq false and controllerPaziente.loginTried eq true}">
 							<div class="alert alert-warning fade in">
 								<a href="#" class="close" data-dismiss="alert">&times;</a>
 								<p>c'è un errore nella password o nell' email</p>
