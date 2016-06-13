@@ -74,28 +74,6 @@
 
 </head>
 <body>
-<!-- //////////////////// INIZIO NAV //////////////// -->
-	<nav class="navbar navbar-default">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#myNav">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a href="../index.jsp" class="navbar-brand">Clinica Chescio Rescio</a>
-		</div>
-		<div class="collapse navbar-collapse" id="myNav">
-			<ul class="nav navbar-nav">
-				<li><a href="nuovoPaziente.jsp">Inserisci Paziente</a></li>
-				<li class="active"><a href="nuovaTipologia.jsp">Inserisci Tipologia Esame</a></li>
-				<li><a href='<c:url value="nuovoEsame.jsp"></c:url>'>Inserisci Esame</a></li>
-			    <li><a href='<c:url value="inserimentoRisultatiEsame.jsp"></c:url>'>Inserisci risultati di un esame</a></li>
-			    <li><a href='<c:url value="medici.jsp"></c:url>'>Visualizza tutti gli esami effettuati da un medico</a></li>
-			</ul>
-		</div>
-		<!--</div> -->
-	</nav>
-<!-- ///////////////// FINE NAV ///////////////////////// -->
 	<div class="container">
 		<div class="col-sm-6 col-sm-offset-3">
 			<f:view>

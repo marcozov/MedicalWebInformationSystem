@@ -76,7 +76,7 @@
 		<div class="collapse navbar-collapse" id="myNav">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="#">Home</a></li>
-				<li><a id="tipologie-nav" href="#">Tipologie di
+				<li><a id="tipologie-nav" href="#tipologie">Tipologie di
 						Esami</a></li>
 				<li><a href="#">I Tuoi Esami</a></li>
 			</ul>

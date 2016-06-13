@@ -17,15 +17,14 @@ public class Risultato {
 	private Long id;
 	
 	@Column(nullable = false)
-	private Long valore;
-//	private int valore;
+	private int valore;
 	
 	@ManyToOne
 	@JoinColumn(name = "indicatore_id")
 	private IndicatoreRisultato indicatoreRisultato;
 
 	public Risultato(){}
-	public Risultato(Long valore, IndicatoreRisultato indicatoreRisultato) {
+	public Risultato(int valore, IndicatoreRisultato indicatoreRisultato) {
 		this.valore = valore;
 		this.indicatoreRisultato = indicatoreRisultato;
 	}
@@ -35,10 +34,10 @@ public class Risultato {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getValore() {
+	public int getValore() {
 		return valore;
 	}
-	public void setValore(Long valore) {
+	public void setValore(int valore) {
 		this.valore = valore;
 	}
 	public IndicatoreRisultato getIndicatoreRisultato() {

@@ -13,4 +13,15 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>/faces/*</url-pattern>
   </servlet-mapping>
+  
+  <filter>
+      <filter-name>login-filter</filter-name>
+      <filter-class>it.uniroma3.filters.LoginFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+    <filter-name>login-filter</filter-name>
+    <url-pattern>/faces/admin/*</url-pattern>
+  </filter-mapping>
+  
 </web-app>

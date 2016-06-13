@@ -5,15 +5,22 @@ package it.uniroma3.controller;
 import it.uniroma3.model.Amministratore;
 import it.uniroma3.model.Facade;
 
+import java.io.Serializable;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
-@ManagedBean
-public class ControllerAdmin {
+@ManagedBean()
+@SessionScoped
+public class ControllerAdmin implements Serializable {
+	
+	private static final long serialVersionUID = 1092382198L;
+	
+
 	private Long id;
 	private String password;
-	private boolean loginSucceded = true;;
+	private boolean loginSucceded = false;
 	
 	
 	@EJB
@@ -22,7 +29,8 @@ public class ControllerAdmin {
 	public String loginAdmin() {
 		Amministratore admin = amministratoreFacade.getAmministratore(id);
 		if (admin != null && admin.checkPassword(password)) {
-			return "admin/adminPanel";
+			loginSucceded = true;
+			return "/admin/adminPanel";
 		}
 		loginSucceded = false;
 		return "/admin";

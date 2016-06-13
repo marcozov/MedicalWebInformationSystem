@@ -44,7 +44,7 @@
 				
 				Password: <h:inputSecret value="#{controllerAdmin.password}" styleClass="form-control"></h:inputSecret>
 					
-				<h:commandLink action="#{controllerAdmin.loginAdmin}"
+				<h:commandButton action="#{controllerAdmin.loginAdmin}"
 						value="Login" styleClass="submit-button btn btn-primary"/>
 			</div>
 			

@@ -3,7 +3,6 @@ package it.uniroma3.controller;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.bean.ManagedBean;
@@ -11,7 +10,6 @@ import javax.faces.bean.ManagedProperty;
 
 import it.uniroma3.model.Facade;
 import it.uniroma3.model.Esame;
-import it.uniroma3.model.IndicatoreRisultato;
 import it.uniroma3.model.Medico;
 import it.uniroma3.model.Paziente;
 import it.uniroma3.model.Risultato;
@@ -19,7 +17,6 @@ import it.uniroma3.model.TipologiaEsame;
 
 @ManagedBean
 public class ControllerEsame {
-	@ManagedProperty(value="#{param.id}")
 	private Long id;
 	private Date dataEsame;
 	private Date dataPrenotazione;
@@ -37,19 +34,8 @@ public class ControllerEsame {
 	
 	private List<Esame> esamiMedicoScelto;   // Non so quanto sia corretto che sia qui
 											 // Se non qui dove???
-	private List<Esame> esami;
-	private Esame esame;
-	
-	// serve qualcosa con gli indicatori di risultato relativi a una certa tipologia, per poter inserire
-	// relativi risultati (UC6)
-	private List<IndicatoreRisultato> listaIndicatori;
 	
 	@EJB Facade facade;
-	
-	@PostConstruct
-	public void elencoEsami() {
-		this.esami = facade.getAllEsami();
-	}
 	
 	public String aggiungiEsame() {
 		nuovoEsameSucceded = false;
@@ -65,13 +51,6 @@ public class ControllerEsame {
 	public String findEsamiPerMedico() {
 		esamiMedicoScelto = facade.getEsamiPerMedico(idmedico);
 		return "esamiPerMedico";
-	}
-	
-	public String findEsame() {
-		this.esame = facade.getEsame(id);
-		// idtipologia dovrebbe essere disponibile
-		listaIndicatori = facade.getIndicatoriPerTipologia(idtipologia);
-		return "esameInserisciRisultato";
 	}
 	
 	public Long getIdpaziente() {
@@ -170,30 +149,7 @@ public class ControllerEsame {
 	public void setEsamiMedicoScelto(List<Esame> esamiMedicoScelto) {
 		this.esamiMedicoScelto = esamiMedicoScelto;
 	}
-
-	public List<Esame> getEsami() {
-		return esami;
-	}
-
-	public void setEsami(List<Esame> esami) {
-		this.esami = esami;
-	}
-
-	public Esame getEsame() {
-		return esame;
-	}
-
-	public void setEsame(Esame esame) {
-		this.esame = esame;
-	}
-
-	public List<IndicatoreRisultato> getListaIndicatori() {
-		return listaIndicatori;
-	}
-
-	public void setListaIndicatori(List<IndicatoreRisultato> listaIndicatori) {
-		this.listaIndicatori = listaIndicatori;
-	}
+	
 	
 	
 }

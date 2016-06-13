@@ -37,7 +37,7 @@ public class TipologiaEsame {
 	private double costo;
 	
 	@OneToMany(cascade={CascadeType.PERSIST})
-	//@JoinColumn(name = "tipologia_id")		// dice con che attributo la tabella degli indicatori dei risultati
+	@JoinColumn(name = "tipologia_id")		// dice con che attributo la tabella degli indicatori dei risultati
 											// dovra' indicare la tipologia dell'esame
 											// notare l'assenza di doppia navigabilita'
 	private List<IndicatoreRisultato> indicatoriRisultato;
