@@ -27,19 +27,7 @@
 </c:if>
 
 <script type="text/javascript">
-	function createCookieBanner() {
-		var startValue = document.cookie.indexOf('=');
-		return startValue == -1
-				|| document.cookie.substring(startValue + 1) != 'true';
-	}
 	$(document).ready(function() {
-		if (createCookieBanner())
-			$("#cookieDiv").slideDown(300);
-		$("#cookieOk").click(function() {
-			$("#cookieDiv").slideUp(300);
-			document.cookie = 'cookieOk=true';
-		});
-
 		$("#tipologie-nav").click(function() {
 			$("#tipologie-title").animate({
 				fontSize : "+=0.2em"
@@ -56,13 +44,6 @@
 <body>
 	<f:view>
 	<div class="container-fluid">
-		<div id="cookieDiv">
-			Questo sito usa i cookie perchè ce la famo prende a bene,
-			continuando la navigazione accetti qualcosa
-			<button id="cookieOk" class="btn btn-success">
-				Ok <span class="glyphicon glyphicon-ok"></span>
-			</button>
-		</div>
 	</div>
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
