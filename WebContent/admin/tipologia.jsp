@@ -6,7 +6,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -22,21 +21,38 @@
 	initial-scale=1 setta lo zoom iniziale -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Admin Panel</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Tipologia</title>
 </head>
 <body>
 	<div class="container">
-		<div class="page-header">
-			<h1>Admin Panel</h1>
-		</div>
-		<ul class="nav nav-pills nav-stacked">
-			<li><a  href='<c:url value="admin/nuovoPaziente.jsp"></c:url>'>Inserisci paziente <span
-					class="glyphicon glyphicon-chevron-right"></span></a></li>
-			<li><a href='<c:url value="admin/nuovaTipologia.jsp"></c:url>'>Inserisci Tipologia Esame</a></li>
-			<li><a href='<c:url value="admin/nuovoEsame.jsp"></c:url>'>Inserisci Esame</a></li>
-			<li><a href='<c:url value="admin/inserimentoRisultatiEsame.jsp"></c:url>'>Inserisci risultati di un esame</a></li>
-			<li><a href='<c:url value="admin/medici.jsp"></c:url>'>Visualizza tutti gli esami relativi a un medico</a></li>
-		</ul>
+	
+	<div class="page-header">
+		<h1>${controllerTipologia.tipologia.nome}</h1>
 	</div>
+	<h2>Dettagli</h2>
+	<ul class="list-group">
+			<li class="list-group-item">Codice: ${controllerTipologia.tipologia.codice}</li>
+			<li class="list-group-item">Prezzo: ${controllerTipologia.tipologia.costo}</li>
+			<li class="list-group-item">Descrizione: ${controllerTipologia.tipologia.descrizione}</li>
+			<li class="list-group-item">
+			Prerequisiti:
+			<ul>
+				<c:forEach var="pre" items="${controllerTipologia.tipologia.prerequisiti}">
+				<li>
+					Nome: ${pre.nome}
+					Descrizione: ${pre.descrizione}
+				</li>
+				</c:forEach>
+			
+			</ul>
+			</li>
+			
+			<c:if test="${controllerTipologia.tipologia.prerequisiti == null}">
+				!--è null
+			</c:if>
+	</ul>
+	</div>
+	
 </body>
 </html>
