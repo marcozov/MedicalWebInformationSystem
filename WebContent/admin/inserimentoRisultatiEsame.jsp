@@ -85,8 +85,8 @@
 				</tr>
 				<c:forEach var="esame" items="#{controllerEsame.esami}">
 					<tr>
-						<td name="id"><h:commandLink action="#{controllerEsame.findEsame}" value="#{esame.id}">
-						<f:param name="id" value="#{esame.id}"></f:param>
+						<td name="id"><h:commandLink action="#{controllerRisultato.findEsame}" value="#{esame.id}">
+						<f:param name="idesame" value="#{esame.id}"></f:param>
 						<f:param name="idtipologia" value="#{esame.tipologiaEsame.id}"></f:param>
 						</h:commandLink></td>
 						<td name="dataEsame">${esame.dataEsame}</td>

@@ -45,12 +45,14 @@ public class Esame {
 	@JoinColumn(name = "medico_id")
 	private Medico medico;
 	
-	@OneToMany(cascade={CascadeType.MERGE})
+	@OneToMany(cascade={CascadeType.MERGE}, fetch=FetchType.EAGER)
 	@JoinColumn(name = "esame_id")		// assenza di doppia navigabilita': come per le associazioni
 										// fra TipologiaEsame e Prerequisito e TipologiaEsame e IndicatoreRisultato
 	private List<Risultato> risultati;
 
-	public Esame() {}
+	public Esame() {
+		this.risultati = new LinkedList<>();
+	}
 	
 	public Esame(Date dataPrenotazione, Date dataEsame, Paziente paziente, TipologiaEsame tipologiaEsame,
 			Medico medico) {

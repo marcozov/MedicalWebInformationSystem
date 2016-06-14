@@ -76,39 +76,46 @@
 	</nav>
 <!-- ///////////////// FINE NAV ///////////////////////// -->
 	<div class="container">
-	<c:if test="${controllerEsame.esame == null}">
+	<c:if test="${controllerRisultato.esame == null}">
 		<p> errore controller null! </p>
 	</c:if>
-	<c:if test="${controllerEsame.nuovoRisultatoSucceded == true}">
+	
+	<p>!!!! ${controllerRisultato.esameid}</p>
+	
+	<c:if test="${controllerRisultato.nuovoRisultatoSucceded == true}">
 				<div class="alert alert-success fade in">
 					<a href="#" class="close" data-dismiss="alert">&times;</a>
 					<p>Risultato inserito con successo! <span class="glyphicon glyphicon-ok"></span></p>
 				</div>
 			</c:if>
 	<div class="page-header">
-		<h1>Codice Esame: ${controllerEsame.esame.id}</h1>
+		<h1>Codice Esame: ${controllerRisultato.esame.id}</h1>
 	</div>
 	<h2>Dettagli</h2>
 	<ul class="list-group">
-			<li class="list-group-item">Data Esame: ${controllerEsame.esame.dataEsame}</li>
-			<li class="list-group-item">Data Prenotazione: ${controllerEsame.esame.dataPrenotazione}</li>
-			<li class="list-group-item">Tipologia: ${controllerEsame.esame.tipologiaEsame.nome}</li>
-			<li class="list-group-item">Medico: ${controllerEsame.esame.medico.nome} ${controllerEsame.esame.medico.cognome}</li>
-			<li class="list-group-item">Paziente: ${controllerEsame.esame.paziente.nome} ${controllerEsame.esame.paziente.cognome}</li>
+			<li class="list-group-item">Data Esame: ${controllerRisultato.esame.dataEsame}</li>
+			<li class="list-group-item">Data Prenotazione: ${controllerRisultato.esame.dataPrenotazione}</li>
+			<li class="list-group-item">Tipologia: ${controllerRisultato.esame.tipologiaEsame.nome}</li>
+			<li class="list-group-item">Medico: ${controllerRisultato.esame.medico.nome} ${controllerRisultato.esame.medico.cognome}</li>
+			<li class="list-group-item">Paziente: ${controllerRisultato.esame.paziente.nome} ${controllerRisultato.esame.paziente.cognome}</li>
 	</ul>
 	<f:view>
 	<h:form>
 	
-	Indicatore: <h:selectOneMenu value="#{controllerEsame.idindicatore}">
-			<c:forEach var="indicatore" items="#{controllerEsame.esame.tipologiaEsame.indicatoriRisultato}">
+   Indicatore: <h:selectOneMenu value="#{controllerRisultato.idindicatore}">
+			<c:forEach var="indicatore" items="#{controllerRisultato.esame.tipologiaEsame.indicatoriRisultato}">
 				<f:selectItem itemValue="#{indicatore.id}" itemLabel="#{indicatore.nome}" />
 			</c:forEach>
 			</h:selectOneMenu>
-			<br />
-	Risultato: <h:inputText value="#{controllerEsame.valore}" styleClass="form-control"
+			<br /> 
+	Risultato: <h:inputText value="#{controllerRisultato.valore}" styleClass="form-control"
 			required="true" requiredMessage="Va inserito un valore per il risultato" id="valore" />
 			<strong><h:message for="valore"/></strong>
-			<h:commandButton action="#{controllerEsame.aggiungiRisultato}" value="Inserisci Risultato"/>
+			<h:commandButton action="#{controllerRisultato.aggiungiRisultato}" value="Inserisci Risultato">
+			
+			<br />
+			<h:commandButton action="#{controllerRisultato.confermaInserimento}" value="Conferma Inserimento"></h:commandButton>
+			</h:commandButton>
 	
 	</h:form>
 	</f:view>

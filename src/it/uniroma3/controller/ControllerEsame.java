@@ -6,6 +6,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import it.uniroma3.model.Facade;
 import it.uniroma3.model.Esame;
@@ -44,26 +46,21 @@ public class ControllerEsame {
 	
 	private boolean nuovoRisultatoSucceded = false;
 	
-	@ManagedProperty(value="#{param.valore}")
 	private Integer valore;
 	
-	@ManagedProperty(value="#{param.idindicatore}")
 	private Long idindicatore;
 	
 	@EJB Facade facade;
 	
 	
-	public String aggiungiRisultato() throws Throwable {
+	public String aggiungiRisultato() {
 		IndicatoreRisultato indicatoreRisultato = facade.getIndicatore(idindicatore);
-		if (indicatoreRisultato == null) throw new Throwable();
 		Risultato risultato = new Risultato(getValore(), indicatoreRisultato);
-		
+		this.esame = facade.getEsame(952l);
 		esame.getRisultati().add(risultato);
 		facade.updateEsame(esame);
-		this.esame = facade.getEsame(new Long(952));
-		esame = null;
-		if (esame == null) throw new Throwable();
-		return "esameInserisciRisultato";
+		
+		return "nuovoEsame";
 	}
 	
 	
@@ -82,11 +79,6 @@ public class ControllerEsame {
 	public String findEsamiPerMedico() {
 		esamiMedicoScelto = facade.getEsamiPerMedico(idmedico);
 		return "esamiPerMedico";
-	}
-	
-	public String findEsame() {
-		this.esame = facade.getEsame(id);
-		return "esameInserisciRisultato";
 	}
 	
 	@PostConstruct
