@@ -51,7 +51,10 @@
 			<strong><h:message for="password" /></strong>
 			<br /><h:commandLink action="#{controllerPaziente.aggiungiPaziente}"
 						value="Registra Paziente" styleClass="submit-button btn btn-primary"/>
-		    </div>
+		    
+				<a href="adminPanel.jsp" class="btn btn-default">Annulla Inserimento</a>
+			</div>
+		    
 		</h:form>
 		</f:view>
 	</div>

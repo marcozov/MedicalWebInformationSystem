@@ -139,11 +139,15 @@
 				
 				<h:commandLink action="#{controllerTipologia.inserisci}"
 						value="Inserisci tipologia" styleClass="submit-button btn btn-primary" id="submit"/>
+				<a href="adminPanel.jsp" class="btn btn-default">Annulla Inserimento</a>
 			</div>
 			
 			<!-- Campi usati per le informazioni lista: prerequisiti e indicatori -->
 			<h:inputHidden value="#{controllerTipologia.prerequisiti}" id="prereqInput"></h:inputHidden>
 			<h:inputHidden value="#{controllerTipologia.indicatori}" id="indicatoriInput"></h:inputHidden>
+			<br />
+				
+
 			</h:form>
 			</f:view>
 		</div>

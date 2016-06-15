@@ -2,18 +2,13 @@ package it.uniroma3.controller;
 
 import java.util.List;
 
-import it.uniroma3.model.Amministratore;
-import it.uniroma3.model.Esame;
 import it.uniroma3.model.Facade;
 import it.uniroma3.model.Paziente;
-import it.uniroma3.model.ProductFacade;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
+
 
 @ManagedBean
 @SessionScoped
@@ -138,10 +133,5 @@ public class ControllerPaziente {
 		this.loginTried = loginTried;
 	}
 
-	
-
-	
-	
-	
 	
 }

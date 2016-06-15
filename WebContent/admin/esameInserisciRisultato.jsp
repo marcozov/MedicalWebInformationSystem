@@ -76,12 +76,6 @@
 	</nav>
 <!-- ///////////////// FINE NAV ///////////////////////// -->
 	<div class="container">
-	<c:if test="${controllerRisultato.esame == null}">
-		<p> errore controller null! </p>
-	</c:if>
-	
-	<p>!!!! ${controllerRisultato.esameid}</p>
-	
 	<c:if test="${controllerRisultato.nuovoRisultatoSucceded == true}">
 				<div class="alert alert-success fade in">
 					<a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -111,12 +105,14 @@
 	Risultato: <h:inputText value="#{controllerRisultato.valore}" styleClass="form-control"
 			required="true" requiredMessage="Va inserito un valore per il risultato" id="valore" />
 			<strong><h:message for="valore"/></strong>
-			<h:commandButton action="#{controllerRisultato.aggiungiRisultato}" value="Inserisci Risultato">
-			
-			<br />
-			<h:commandButton action="#{controllerRisultato.confermaInserimento}" value="Conferma Inserimento"></h:commandButton>
+			<h:commandButton styleClass="btn btn-primary" action="#{controllerRisultato.aggiungiRisultato}" value="Inserisci Risultato">
 			</h:commandButton>
-	
+			<br />
+			<div class="btn-group">
+				
+				<h:commandButton styleClass="btn btn-default" action="#{controllerRisultato.confermaInserimento}" value="Conferma Inserimento"></h:commandButton>
+				<a href="adminPanel.jsp" class="btn btn-default">Annulla Inserimento</a>
+			</div>
 	</h:form>
 	</f:view>
 	

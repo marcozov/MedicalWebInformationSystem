@@ -61,6 +61,10 @@
 			
 			<br /><h:commandLink action="#{controllerEsame.aggiungiEsame}"
 						value="Registra Esame" styleClass="submit-button btn btn-primary"/>
+						
+		    <div class="btn-group">
+				<a href="adminPanel.jsp" class="btn btn-default">Annulla Inserimento</a>
+			</div>
 		    </div>
 		</h:form>
 		</f:view>
