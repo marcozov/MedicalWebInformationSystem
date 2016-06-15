@@ -66,63 +66,39 @@
 	</div>
 	<!--</div> --> </nav>
 	<div class=container>
-		<div class=row>
-			<div class="col-md-4">
-				<center>
-					<h4>
-						<b>I suoi esami</b>
-					</h4>
-				</center>
-			</div>
-		</div>
+		<h1>
+			I Tuoi esami
+		</h1>
 		<c:if test="${controllerPaziente.paziente != null}">
+		
 			<c:forEach var="esame" items="${controllerPaziente.paziente.esami }">
-				<div class=row>
-					<div class="col-md-4">
-						<h5>Data prenotazione</h5>
+				<div class="thumbnail">
+				<h3>Data prenotazione:</h3>
+				<h4>${esame.dataPrenotazione}</h4>
+			
+				<h3>Data esame</h3>
+				<h4>${esame.dataEsame}</h4>
+				
+				<h3>Paziente</h3>
+				<h4>${esame.paziente.nome} ${esame.paziente.cognome}</h4>
+				
+				<h3>Tipologia esame</h3>
+				<h4>${esame.tipologiaEsame.nome}</h4>
+				
+				
+				<h3>Medico</h3>
+				<h4>${esame.medico.nome} ${esame.medico.cognome}</h4>
+					
+				
+				<h3>Risultati</h3>
+					<div class="thumbnail">
+					<c:forEach var="risultato" items="${esame.risultati}">
+						<h4>${risultato.indicatoreRisultato.nome}: <em>${risultato.valore}</em></h4>
+					</c:forEach>
 					</div>
-					<div class="col-md-4">${esame.dataPrenotazione}</div>
-				</div>
-				<div class=row>
-					<div class="col-md-4">
-						<h5>Data esame</h5>
-					</div>
-					<div class="col-md-4">${esame.dataEsame}</div>
-				</div>
-				<div class=row>
-					<div class="col-md-4">
-						<h5>Paziente</h5>
-					</div>
-					<div class="col-md-4">${esame.paziente.nome}</div>
-					<div class="col-md-4">${esame.paziente.cognome}</div>
-				</div>
-				<div class=row>
-					<div class="col-md-4">
-						<h5>Tipologia esame</h5>
-					</div>
-					<div class="col-md-4">${esame.tipologiaEsame.nome}</div>
-				</div>
-				<div class=row>
-					<div class="col-md-4">
-						<h5>Medico</h5>
-					</div>
-					<div class="col-md-4">${esame.medico.nome}</div>
-					<div class="col-md-4">${esame.medico.cognome}</div>
-				</div>
-				<div class=row>
-					<div class="col-md-4">
-						<h5>Risultato</h5>
-					</div>
-					<div class="col-md-4">${esame.risultato.valore}</div>
-				</div>
+			</div>
 			</c:forEach>
 		</c:if>
-		<center>
-			<h4>Non ha ancora effettuato un esame</h4>
-		</center>
 	</div>
-
-
-
 </body>
 </html>

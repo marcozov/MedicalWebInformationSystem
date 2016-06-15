@@ -23,7 +23,7 @@ public class Paziente {
 	@Column(unique=true, nullable=false)
 	private String email;
 	
-	@OneToMany(mappedBy = "paziente")
+	@OneToMany(mappedBy = "paziente", fetch=FetchType.EAGER)
 	private List<Esame> esami;
 	
 	public Paziente(){}

@@ -59,7 +59,7 @@
 				<li class="active"><a href="#">Home</a></li>
 				<li><a id="tipologie-nav" href="#tipologie">Tipologie di
 						Esami</a></li>
-				<li><a href="#">I Tuoi Esami</a></li>
+				<li><a href="paziente/esamiPaziente.jsp">I Tuoi Esami</a></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
