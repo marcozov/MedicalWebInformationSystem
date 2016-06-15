@@ -1,0 +1,57 @@
+UC1
+1) L'utente accede alla index.jsp del portale
+2) L'utente visualizza tutte le tipologie nella parte inferiore della pagina
+3) L'utente fa click sul nome di una delle tipologie di esame
+4) il Sistema visualizza i dettagli della tipologia selezionata
+5) L'utente puo' decidere di tornare alla index e ripetere i passi precedenti
+Questo caso d'uso equivale a quello descritto nei requisiti
+
+UC2
+1) L'amministratore effettua il login attraverso l'URL /faces/admin.jsp
+2) Il sistema autentica l'amministratore e lo manda nel suo pannello, adminPanel.jsp, che gli permette di selezionare un'operazione da svolgere
+3) L'amministratore seleziona la voce "Inserisci Esame"
+4) L'amministratore inserisce i dati richiesti per l'esame
+5) L'amministratore conferma l'inserimento dell'esame
+
+UC3
+1) Il paziente effettua il login dalla homepage
+2) Il sistema autentica il paziente e lo rimanda alla homepage
+3) Il paziente seleziona la voce "I tuoi esami"
+4) Il sistema mostra un elenco dettagliato contenente tutti gli esami sostenuti dal paziente
+
+
+UC4
+1) L'amministratore effettua il login attraverso l'URL /faces/admin.jsp
+2) Il sistema autentica l'amministratore e lo manda nel suo pannello (adminPanel.jsp) che gli permette di selezionare un'operazione da svolgere
+3) L'amministratore seleziona la voce "Inserisci Tipologia Esame"
+4) L'amministratore inserisce i dati richiesti per la tipologia
+5) L'amministratore conferma l'inserimento e si ritrova sulla stessa pagina, pronto a inserire un'altra tipologia
+L'inserimento dei prerequisiti e degli indicatori risultato e' stato realizzato passando i dati al server tramite JSON
+
+
+UC5
+1) L'amministratore effettua il login attraverso l'URL /faces/admin.jsp
+2) Il sistema autentica l'amministratore e lo manda nel suo pannello (adminPanel.jsp) che gli permette di selezionare un'operazione da svolgere
+3) L'amministratore seleziona la voce "Visualizza tutti gli esami relativi a un medico"
+4) L'amministratore cerca il medico tramite barra di ricerca e lo seleziona
+5) Il sistema mostra tutti gli esami che ha effettuato quel medico
+
+UC6
+1) L'amministratore effettua il login attraverso l'URL /faces/admin.jsp
+2) Il sistema autentica l'amministratore e lo manda nel suo pannello (adminPanel.jsp) che gli permette di selezionare un'operazione da svolgere
+3) L'amministratore seleziona la voce "Inserisci risultati di un esame"
+4) L'amministratore cerca un esame tramite la barra di ricerca e lo seleziona
+5) Il sistema mostra i dettagli relativi all'esame scelto e mostra un form per l'inserimento del relativo risultato
+6) L'amministratore inserisce i dati relativi al risultato dell'esame e lo inserisce
+L'amministratore ripete il passo 6 un numero indefinito di volte
+7) L'amministratore conferma l'inserimento del risultato e viene rimandato al suo pannello
+
+UC7 (inserimento di un paziente)
+1) L'amministratore effettua il login attraverso l'URL /faces/admin.jsp
+2) Il sistema autentica l'amministratore e lo manda nel suo pannello (adminPanel.jsp) che gli permette di selezionare un'operazione da svolgere
+3) L' amministratore seleziona la voce "Inserisci paziente"
+4) L' amministratore inserisce tutti i dati relativi ad un paziente e lo inserisce nel sistema
+L' amministratore ripete il passo 4 un numero indefinito di volte per aggiungere altri pazienti
+
+
+Il progetto e' stato realizzato interamente in JSF, integrando alcuni casi d'uso con Javascript e JQuery
