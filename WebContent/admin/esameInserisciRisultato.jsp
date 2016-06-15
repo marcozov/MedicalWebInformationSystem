@@ -103,7 +103,7 @@
 	<h:form>
 	
    Indicatore: <h:selectOneMenu value="#{controllerRisultato.idindicatore}">
-			<c:forEach var="indicatore" items="#{controllerRisultato.esame.tipologiaEsame.indicatoriRisultato}">
+			<c:forEach var="indicatore" items="#{controllerRisultato.indicatori}">
 				<f:selectItem itemValue="#{indicatore.id}" itemLabel="#{indicatore.nome}" />
 			</c:forEach>
 			</h:selectOneMenu>

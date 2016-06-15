@@ -5,7 +5,9 @@ import it.uniroma3.model.Facade;
 import it.uniroma3.model.IndicatoreRisultato;
 import it.uniroma3.model.Risultato;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -28,6 +30,8 @@ public class ControllerRisultato {
 	
 	private Esame esame;
 	
+	private List<IndicatoreRisultato> indicatori;
+	
 	@EJB
 	private Facade facade;
 
@@ -35,6 +39,7 @@ public class ControllerRisultato {
 		IndicatoreRisultato indicatoreRisultato = facade.getIndicatore(idindicatore);
 		Risultato risultato = new Risultato(getValore(), indicatoreRisultato);
 		esame.getRisultati().add(risultato);
+		indicatori = filtraIndicatori(esame);
 		return "esameInserisciRisultato"; 
 	}
 	
@@ -48,7 +53,23 @@ public class ControllerRisultato {
 	public String findEsame() {
 		esameid = Long.valueOf(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idesame"));  
 		this.esame = facade.getEsame(esameid);
+		this.indicatori = filtraIndicatori(esame);
 		return "esameInserisciRisultato";
+	}
+	
+	private List<IndicatoreRisultato> filtraIndicatori(Esame esame) {
+		List<IndicatoreRisultato> result = new ArrayList<>();
+		List<IndicatoreRisultato> indicatori = esame.getTipologiaEsame().getIndicatoriRisultato();
+		List<Risultato> risultati = esame.getRisultati();
+		boolean add = true;
+		for (IndicatoreRisultato i : indicatori) {
+			add = true;
+			for (Risultato r : risultati)
+				if (i.getNome().equals(r.getIndicatoreRisultato().getNome())) add = false;
+			if (add)
+				result.add(i);
+		}
+		return result;
 	}
 	
 	
@@ -113,6 +134,18 @@ public class ControllerRisultato {
 	public void setEsameid(Long esameid) {
 		this.esameid = esameid;
 	}
+
+
+	public List<IndicatoreRisultato> getIndicatori() {
+		return indicatori;
+	}
+
+
+	public void setIndicatori(List<IndicatoreRisultato> indicatori) {
+		this.indicatori = indicatori;
+	}
+	
+	
 	
 	
 	
